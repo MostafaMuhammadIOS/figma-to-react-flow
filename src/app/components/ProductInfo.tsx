@@ -4,33 +4,28 @@ import { Star, Truck, Shield, RotateCcw, Check } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 interface ProductInfoProps {
-  onAddToCart: (quantity: number, color: string) => void;
+  onAddToCart: (product: { id: string; name: string; price: number; image: string }) => void;
 }
 
 export function ProductInfo({ onAddToCart }: ProductInfoProps) {
   const [selectedBundle, setSelectedBundle] = useState(1);
-  const [selectedColor, setSelectedColor] = useState('Blue');
 
   const bundles = [
-    { quantity: 1, price: 49.99, perUnit: 49.99, discount: '' },
-    { quantity: 2, price: 79.99, perUnit: 39.995, discount: 'Save 20%' },
-    { quantity: 5, price: 129.99, perUnit: 25.998, discount: 'Save 48%' },
-    { quantity: 10, price: 199.99, perUnit: 19.999, discount: 'Save 60%', popular: true },
-    { quantity: 20, price: 389.99, perUnit: 19.4995, discount: 'Save 61%' },
-    { quantity: 30, price: 549.99, perUnit: 18.333, discount: 'Save 63%' },
-  ];
-
-  const colors = [
-    { name: 'Blue', hex: '#3B82F6' },
-    { name: 'Green', hex: '#10B981' },
-    { name: 'Orange', hex: '#F97316' },
-    { name: 'Black', hex: '#000000' },
+    { quantity: 1, price: 15.67, perUnit: 15.67, discount: '' },
+    { quantity: 2, price: 28.99, perUnit: 14.495, discount: 'Save 7%' },
+    { quantity: 5, price: 68.99, perUnit: 13.798, discount: 'Save 12%', popular: true },
+    { quantity: 10, price: 129.99, perUnit: 12.999, discount: 'Save 17%' },
   ];
 
   const selectedBundleData = bundles.find(b => b.quantity === selectedBundle) || bundles[0];
 
   const handleAddToCart = () => {
-    onAddToCart(selectedBundle, selectedColor);
+    onAddToCart({
+      id: 'water-filter-straw',
+      name: 'Portable Water Filter Straw',
+      price: selectedBundleData.price,
+      image: "https://images.unsplash.com/photo-1594766117697-8478c612c643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMGZpbHRlciUyMHN0cmF3JTIwcHJvZHVjdHxlbnwxfHx8fDE3NzMzNjU4NTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    });
   };
 
   return (
@@ -110,30 +105,6 @@ export function ProductInfo({ onAddToCart }: ProductInfoProps) {
         perfect for camping, hiking, travel, and emergency preparedness. Filter lifespan up to 
         4000L with proper washing and maintenance.
       </p>
-
-      {/* Color Selection */}
-      <div>
-        <label className="text-sm mb-3 block">
-          Color: <span className="font-semibold">{selectedColor}</span>
-        </label>
-        <div className="flex gap-3">
-          {colors.map((color) => (
-            <button
-              key={color.name}
-              onClick={() => setSelectedColor(color.name)}
-              className={`size-10 rounded-full border-2 transition ${
-                selectedColor === color.name
-                  ? 'border-black scale-110'
-                  : 'border-gray-300'
-              }`}
-              style={{ backgroundColor: color.hex }}
-              title={color.name}
-            >
-              <span className="sr-only">{color.name}</span>
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* Key Features */}
       <div className="bg-blue-50 p-4 rounded-lg space-y-2">

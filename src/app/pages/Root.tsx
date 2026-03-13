@@ -1,46 +1,45 @@
-import { useState } from 'react';
-import { Outlet } from 'react-router';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { Outlet } from 'react-router';
+import { useState } from 'react';
 import { CartSheet } from '../components/CartSheet';
 import { toast, Toaster } from 'sonner';
-import productImage from 'figma:asset/952cb914be93123fc851144cf75b29c58cb3f988.png';
 
 export interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
-  color: string;
   image: string;
 }
 
 export function Root() {
-  const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const handleAddToCart = (quantity: number, color: string) => {
+  const productImage = "https://images.unsplash.com/photo-1594766117697-8478c612c643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMGZpbHRlciUyMHN0cmF3JTIwcHJvZHVjdHxlbnwxfHx8fDE3NzMzNjU4NTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
+
+  const handleAddToCart = (product: { id: string; name: string; price: number; image: string }) => {
     const existingItemIndex = cartItems.findIndex(
-      (item) => item.color === color
+      (item) => item.id === product.id
     );
 
     if (existingItemIndex > -1) {
       const newItems = [...cartItems];
-      newItems[existingItemIndex].quantity += quantity;
+      newItems[existingItemIndex].quantity += 1;
       setCartItems(newItems);
     } else {
       const newItem: CartItem = {
-        id: `${Date.now()}-${color}`,
-        name: 'Portable Water Filter Straw',
-        price: 15.67,
-        quantity,
-        color,
-        image: productImage,
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        image: product.image,
       };
       setCartItems([...cartItems, newItem]);
     }
 
-    toast.success(`Added ${quantity} item${quantity > 1 ? 's' : ''} to cart`);
+    toast.success(`Added to cart`);
   };
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
@@ -64,15 +63,15 @@ export function Root() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Header cartCount={totalItems} onCartClick={() => setCartOpen(true)} />
+      <Header cartCount={totalItems} onCartClick={() => setIsCartOpen(true)} />
       
       <Outlet context={{ onAddToCart: handleAddToCart }} />
       
       <Footer />
 
       <CartSheet
-        open={cartOpen}
-        onOpenChange={setCartOpen}
+        open={isCartOpen}
+        onOpenChange={setIsCartOpen}
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}

@@ -2,29 +2,22 @@ import { ProductGallery } from '../components/ProductGallery';
 import { ProductInfo } from '../components/ProductInfo';
 import { ProductTabs } from '../components/ProductTabs';
 import { useOutletContext } from 'react-router';
-import productImg1 from 'figma:asset/80fac5a335868fdfb4817413729b287207f7d4e0.png';
-import productImg2 from 'figma:asset/68474ac77f44e3d000555b4d21322d7e4571bb38.png';
-import productImg3 from 'figma:asset/9e51cd4c33544c6fc6adbb6a92972f642372be05.png';
-import productImg4 from 'figma:asset/cd0c9eaae64d8f173e16ec27a854329c80807a9d.png';
-import productImg5 from 'figma:asset/c3cb7bad2dd4fffd8d4cbddf6109b8112d06dedc.png';
-import productImg6 from 'figma:asset/ebbec8bab01d3525d6442a0350300252ed59b362.png';
-import productImg7 from 'figma:asset/f2298bdd985c441af6282c66f7e7767484e41550.png';
 
 interface OutletContext {
-  onAddToCart: (quantity: number, color: string) => void;
+  addToCart: (product: { id: string; name: string; price: number; image: string }) => void;
 }
 
 export function ProductPage() {
-  const { onAddToCart } = useOutletContext<OutletContext>();
+  const { addToCart } = useOutletContext<OutletContext>();
 
   const productImages = [
-    productImg1,
-    productImg2,
-    productImg3,
-    productImg4,
-    productImg5,
-    productImg6,
-    productImg7,
+    "https://images.unsplash.com/photo-1594766117697-8478c612c643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMGZpbHRlciUyMHN0cmF3JTIwcHJvZHVjdHxlbnwxfHx8fDE3NzMzNjU4NTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://images.unsplash.com/photo-1615387086527-80c771c31384?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3J0YWJsZSUyMHdhdGVyJTIwZmlsdGVyJTIwZ2VhcnxlbnwxfHx8fDE3NzMzNjU4NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://images.unsplash.com/photo-1760134703597-b1af11ecd019?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWtpbmclMjBnZWFyJTIwd2F0ZXIlMjBmaWx0cmF0aW9ufGVufDF8fHx8MTc3MzM2NTg1M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://images.unsplash.com/photo-1665512987872-4a4c06a8aab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvdXRkb29yJTIwd2F0ZXIlMjBwdXJpZmllciUyMGVxdWlwbWVudHxlbnwxfHx8fDE3NzMzNjU4NTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://images.unsplash.com/photo-1556200225-fc2499ba3a74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1waW5nJTIwZHJpbmtpbmclMjB3YXRlcnxlbnwxfHx8fDE3NzMzNjU4NTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://images.unsplash.com/photo-1622988238512-bb5ac2a726f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1waW5nJTIwd2F0ZXIlMjBib3R0bGUlMjBmaWx0ZXJ8ZW58MXx8fHwxNzczMzY1ODUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://images.unsplash.com/photo-1667761873085-72f218a4a3ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvdXRkb29yJTIwaGlraW5nJTIwd2F0ZXIlMjBwdXJpZmljYXRpb258ZW58MXx8fHwxNzczMzY1ODUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   ];
 
   return (
@@ -33,7 +26,7 @@ export function ProductPage() {
       <div className="container mx-auto px-4 py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           <ProductGallery images={productImages} />
-          <ProductInfo onAddToCart={onAddToCart} />
+          <ProductInfo onAddToCart={addToCart} />
         </div>
       </div>
 

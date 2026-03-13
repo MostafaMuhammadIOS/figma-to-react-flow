@@ -10,12 +10,13 @@ import { TrustBadges, PaymentMethods } from '../components/TrustBadges';
 import { UrgencyTimer, StockIndicator } from '../components/UrgencyTimer';
 import { SocialProof, ViewingIndicator } from '../components/SocialProof';
 import { FAQ } from '../components/FAQ';
-import heroImage from 'figma:asset/c62dddb032717eca2c8f84e3ff6015aa0a61c515.png';
-import useImage from 'figma:asset/88bc88340ed3b1554d157cb4466c388a82a9c53d.png';
-import comparisonImage from 'figma:asset/f2298bdd985c441af6282c66f7e7767484e41550.png';
 
 export function Home() {
   const navigate = useNavigate();
+
+  const heroImage = "https://images.unsplash.com/photo-1594766117697-8478c612c643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMGZpbHRlciUyMHN0cmF3JTIwcHJvZHVjdHxlbnwxfHx8fDE3NzMzNjU4NTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
+  const useImage = "https://images.unsplash.com/photo-1667761873085-72f218a4a3ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvdXRkb29yJTIwaGlraW5nJTIwd2F0ZXIlMjBwdXJpZmljYXRpb258ZW58MXx8fHwxNzczMzY1ODUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
+  const comparisonImage = "https://images.unsplash.com/photo-1622988238512-bb5ac2a726f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1waW5nJTIwd2F0ZXIlMjBib3R0bGUlMjBmaWx0ZXJ8ZW58MXx8fHwxNzczMzY1ODUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
   const howItWorks = [
     {
